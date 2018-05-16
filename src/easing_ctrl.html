@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <title>SVG Animation Easing Control</title>
-    <link rel="stylesheet" href="easing_ctrl.css"/>
+    <link href="./easing_ctrl.css" rel="stylesheet"/>
 </head>
 <body>
     <svg id="mySVG" xmlns="http://www.w3.org/2000/svg" width="512" height="512">
@@ -15,15 +15,15 @@
                 id="slideRight"
                 attributeName="cx"
                 attributeType="XML"
-                values="10;400"
+                values="0;200;400"
                 calcMode="spline"
-                keyTimes="0;1"
-                keySplines=".25 .25 .75 .75;"
+                keyTimes="0;.5;1"
+                keySplines=".25 .75 .75 .25;.25 .75 .75 .25;"
                 dur="3s"
                 repeatCount="indefinite"
                 />
         </circle>
     </svg>
-    <script src="easing_ctrl.js"></script>
+    <script src="./easing_ctrl.js"></script>
 </body>
 </html>

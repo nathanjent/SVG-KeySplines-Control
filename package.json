@@ -1,0 +1,33 @@
+{
+    "name": "svg_fire",
+    "version": "1.0.0",
+    "description": "creating fire with SVG elements and SMIL animation",
+    "main": "index.js",
+    "author": "nathanjent <nathanjent@gmail.com>",
+    "license": "MIT",
+    "dependencies": {
+    },
+    "devDependencies": {
+        "babel": "^6.23.0",
+        "babel-cli": "^6.26.0",
+        "babel-preset-env": "^1.7.0"
+    },
+    "scripts": {
+        "build": "babel src -d ./dist ; cp -u src/*.html ./dist ; cp -u src/*.css ./dist",
+        "clean": "rm -r ./dist"
+    },
+    "babel": {
+        "presets": [
+            [
+                "env",
+                {
+                    "targets": {
+                        "browsers": [
+                            "last 30 versions"
+                        ]
+                    }
+                }
+            ]
+        ]
+    }
+}
