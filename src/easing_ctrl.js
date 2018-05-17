@@ -3,7 +3,7 @@ const SVGNS = "http://www.w3.org/2000/svg";
 // Create a control on the given SVG element for the given animate element.
 function CreateAnimCtrl(svgSel, animSel, x, y) {
     const svgElem = document.querySelector(svgSel);
-    const animElem = document.querySelector(animSel);
+    const animElem = svgElem.querySelector(animSel);
     const width = 100;
     const height = 100;
 
@@ -21,6 +21,13 @@ function CreateAnimCtrl(svgSel, animSel, x, y) {
         boxElem.setAttribute('stroke', '#333');
         boxElem.setAttribute('stroke-width', '2');
         svgElem.appendChild(boxElem);
+
+        const textElem = document.createElementNS(SVGNS, 'text');
+        textElem.setAttribute('id', `text${i}`);
+        textElem.setAttribute('x', x + (width * i));
+        textElem.setAttribute('y', y + height + 20);
+        textElem.setAttribute('style', 'font-size:.6em;');
+        svgElem.appendChild(textElem);
         
         const easingCurve = document.createElementNS(SVGNS, 'path');
         easingCurve.setAttribute('id', `curve${i}`);
@@ -79,11 +86,12 @@ function CreateAnimCtrl(svgSel, animSel, x, y) {
 
         for (let i = 0; i < keySplines.length; i++) {
             let ks = keySplines[i];
-            let p1 = document.querySelector(`#controlPointA${i}`);
-            let line1 = document.querySelector(`#handleA${i}`);
-            let p2 = document.querySelector(`#controlPointB${i}`);
-            let line2 = document.querySelector(`#handleB${i}`);
-            let easingCurve = document.querySelector(`#curve${i}`);
+            let p1 = svgElem.querySelector(`#controlPointA${i}`);
+            let line1 = svgElem.querySelector(`#handleA${i}`);
+            let p2 = svgElem.querySelector(`#controlPointB${i}`);
+            let line2 = svgElem.querySelector(`#handleB${i}`);
+            let easingCurve = svgElem.querySelector(`#curve${i}`);
+            let text = svgElem.querySelector(`#text${i}`);
 
             let pathStr = `
                 M ${x + (width * i)},${height + y}
@@ -91,6 +99,7 @@ function CreateAnimCtrl(svgSel, animSel, x, y) {
                     ${x + (width * ks.x2) + (width * i)},${y + (height * ks.y2)}
                     ${x + width + (width * i)},${y}`;
             easingCurve.setAttribute('d', pathStr);
+            text.textContent = `${ks.x1} ${ks.y1} ${ks.x2} ${ks.y2};`;
             p1.setAttribute('cx', x + (width * ks.x1) + (width * i));
             p1.setAttribute('cy', y + (height * ks.y1));
             line1.setAttribute('x1', x + (width * i));
@@ -166,10 +175,9 @@ function CreateAnimCtrl(svgSel, animSel, x, y) {
         selectedElement.removeEventListener('mouseup', onDeselectElement);
         selectedElement = 0;
     }
-}
-let slideCtrl = new CreateAnimCtrl('#mySVG', '#slideRight', 10, 100);
 
-function update() {
-    slideCtrl.update();
+    let me = this;
+    this.start = function() {
+        setInterval(() => me.update(), 10);
+    }
 }
-setInterval(update, 10);
