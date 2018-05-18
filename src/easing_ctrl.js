@@ -9,7 +9,7 @@ function CreateAnimCtrl(svgSel, animSel, x, y) {
 
     let keySplines = getKeySplines(animElem);
     let selectedElement = 0;
-    
+
     for (let i = 0; i < keySplines.length; i++) {
         const boxElem = document.createElementNS(SVGNS, 'rect');
         boxElem.setAttribute('id', `box${i}`);
@@ -28,20 +28,20 @@ function CreateAnimCtrl(svgSel, animSel, x, y) {
         textElem.setAttribute('y', y + height + 20);
         textElem.setAttribute('style', 'font-size:.6em;');
         svgElem.appendChild(textElem);
-        
+
         const easingCurve = document.createElementNS(SVGNS, 'path');
         easingCurve.setAttribute('id', `curve${i}`);
         easingCurve.setAttribute('fill', 'none');
         easingCurve.setAttribute('stroke', '#00A');
         easingCurve.setAttribute('stroke-width', 2);
         svgElem.appendChild(easingCurve);
-        
+
         const line1 = document.createElementNS(SVGNS, 'line');
         line1.setAttribute('id', `handleA${i}`);
         line1.setAttribute('stroke', '#C33');
         line1.setAttribute('stroke-width', 2);
         svgElem.appendChild(line1);
-        
+
         const p1 = document.createElementNS(SVGNS, 'circle');
         p1.setAttribute('id', `controlPointA${i}`);
         p1.setAttribute('class', 'draggable');
@@ -49,13 +49,13 @@ function CreateAnimCtrl(svgSel, animSel, x, y) {
         p1.setAttribute('fill', '#C33');
         p1.addEventListener('mousedown', onSelectElement);
         svgElem.appendChild(p1);
-        
+
         const line2 = document.createElementNS(SVGNS, 'line');
         line2.setAttribute('id', `handleB${i}`);
         line2.setAttribute('stroke', '#C33');
         line2.setAttribute('stroke-width', 2);
         svgElem.appendChild(line2);
-        
+
         const p2 = document.createElementNS(SVGNS, 'circle');
         p2.setAttribute('id', `controlPointB${i}`);
         p2.setAttribute('class', 'draggable');
@@ -80,7 +80,7 @@ function CreateAnimCtrl(svgSel, animSel, x, y) {
                 };
             });
     }
-    
+
     this.update = function() {
         keySplines = getKeySplines(animElem);
 
@@ -123,7 +123,7 @@ function CreateAnimCtrl(svgSel, animSel, x, y) {
         selectedElement.addEventListener('mouseout', onDeselectElement);
         selectedElement.addEventListener('mouseup', onDeselectElement);
     }
-    
+
     function onMoveElement(evt) {
         evt.preventDefault();
         // Append to the elements transform list
@@ -131,13 +131,13 @@ function CreateAnimCtrl(svgSel, animSel, x, y) {
         tfm.setTranslate(evt.movementX, evt.movementY);
         selectedElement.transform.baseVal.appendItem(tfm);
     }
-    
+
     function onDeselectElement(evt) {
         evt.preventDefault();
-        
+
         // Consolidate the transform list
         selectedElement.transform.baseVal.consolidate();
-        
+
         // Get key splines
         let keySplines = animElem.getAttribute('keySplines')
             .split(';')
@@ -167,7 +167,7 @@ function CreateAnimCtrl(svgSel, animSel, x, y) {
         animElem.setAttribute('keySplines', keySplineStr);
 
         selectedElement.setAttribute('r', 5);
-        
+
         // Clear selected
         selectedElement.transform.baseVal.clear();
         selectedElement.removeEventListener('mousemove', onMoveElement);

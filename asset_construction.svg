@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg:svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="🔥"
+   width="400"
+   height="500"
+   preserveAspectRatio="true"
+   viewBox="0 0 400 500"
+   version="1.1"
+   sodipodi:docname="fire.svg"
+   inkscape:version="0.92.2 2405546, 2018-03-11">
+  <svg:metadata
+     id="metadata932">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </svg:metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1028"
+     id="namedview930"
+     showgrid="false"
+     inkscape:zoom="1.4725499"
+     inkscape:cx="76.688918"
+     inkscape:cy="265.75443"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="🔥"
+     inkscape:object-nodes="false" />
+  <svg:defs
+     id="defs914">
+    <svg:path
+       id="leftPath1"
+       d="M 176,721 C 96,607 194,591 209,514 224,436 197,390 198,287"
+       inkscape:connector-curvature="0" />
+    <svg:path
+       id="rightPath2"
+       d="m 175,751 c 90,-60 1,-139 -2,-196 -4,-57 38,-91 26,-240"
+       inkscape:connector-curvature="0" />
+    <svg:path
+       id="rightPath1"
+       d="M 248,727 C 308,610 220,557 209,514 199,471 165,438 194,302"
+       inkscape:connector-curvature="0" />
+    <svg:path
+       id="flameLeft"
+       d="m -2,3 c 11,1 22,-5 42,-17 -23,2 -24,-4 -34,-7 -10,-2 -19,-4 -30,7 5,7 10,17 22,18 z"
+       inkscape:connector-curvature="0" />
+    <svg:path
+       id="flameRight"
+       d="M 3,1 C 16,0 17,-11 39,-14 23,-26 5,-27 -2,-25 c -8,2 -8,9 -22,16 6,8 14,12 28,10 z"
+       inkscape:connector-curvature="0" />
+  </svg:defs>
+  <svg:style
+     id="style916">
+        /* <![CDATA[ */
+        svg {
+            z-index: 10;
+            height: 100%;
+        }
+
+        .flame {
+            fill: #FF6600;
+        }
+        /* ]]> */
+    <path />
+</svg:style>
+  <svg:script
+     id="script918">
+        /* <![CDATA[ */
+        /* ]]> */
+    </svg:script>
+  <svg:use
+     href="#flameLeft"
+     class="flame"
+     id="use923"
+     style="fill:#ff6600"
+     x="0"
+     y="0"
+     width="100%"
+     height="100%"
+     transform="translate(0,-300)">
+    <svg:animateTransform
+       attributeName="transform"
+       attributeType="XML"
+       type="scale"
+       from="2"
+       to=".1"
+       dur="3s"
+       additive="sum"
+       repeatCount="indefinite" />
+    <svg:animateMotion
+       dur="3s"
+       calcMode="spline"
+       keyTimes="0;.6;1"
+       keySplines="0 .75 1 1;1 1 .3 1"
+       repeatCount="indefinite"
+       additive="sum"
+       rotate="auto">
+      <svg:mpath
+         href="#leftPath1" />
+    </svg:animateMotion>
+  </svg:use>
+  <svg:use
+     href="#flameRight"
+     class="flame"
+     id="use925"
+     style="fill:#ff6600"
+     x="0"
+     y="0"
+     width="100%"
+     height="100%"
+     transform="translate(0,-300)">
+    <svg:animateTransform
+       attributeName="transform"
+       attributeType="XML"
+       type="scale"
+       from="2"
+       to=".1"
+       dur="3s"
+       additive="sum"
+       repeatCount="indefinite" />
+    <svg:animateMotion
+       dur="3s"
+       calcMode="spline"
+       keyTimes="0;.6;1"
+       keySplines="0 .75 1 1;1 1 .6 1"
+       repeatCount="indefinite"
+       additive="sum"
+       rotate="auto">
+      <svg:mpath
+         href="#rightPath1" />
+    </svg:animateMotion>
+  </svg:use>
+  <svg:path
+     class="flame"
+     d="m 7.0745649,7.9505548 c 13.0000001,-1 14.0000001,-12 36.0000001,-15 -16,-11.9999998 -34.0000001,-12.9999998 -41.0000001,-10.9999998 -8,2 -8,8.9999998 -21.9999999,15.9999998 6,8 13.9999999,12 27.9999999,10 z"
+     id="path927"
+     inkscape:connector-curvature="0"
+     style="fill:#ff6600">
+    <svg:animateTransform
+       attributeName="transform"
+       attributeType="XML"
+       type="scale"
+       from="2"
+       to=".01"
+       dur="3s"
+       additive="sum"
+       repeatCount="indefinite" />
+    <svg:animateMotion
+       dur="3s"
+       calcMode="spline"
+       keyTimes="0;.6;1"
+       keySplines="0 .75 .25 .25;.25 .25 .6 1"
+       repeatCount="indefinite"
+       additive="sum"
+       rotate="auto">
+      <svg:mpath
+         href="#rightPath2" />
+    </svg:animateMotion>
+  </svg:path>
+  <svg:path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 195,500 C 317,366 145,329.80456 195,4"
+     id="path972"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="cc" />
+  <svg:path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 186.75089,499.32091 C 57.043909,278.61531 212.55647,89.148041 204.40734,5.6194604"
+     id="path974"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="cc" />
+  <svg:path
+     sodipodi:nodetypes="cc"
+     inkscape:connector-curvature="0"
+     id="path976"
+     d="M 177.92267,500 C 281.14498,285.40625 127.6697,389.98675 188.10908,5.6194604"
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  <svg:path
+     sodipodi:nodetypes="cc"
+     inkscape:connector-curvature="0"
+     id="path978"
+     d="M 208.4819,500.6791 C 7.9935716,453.07133 206.48829,165.94906 199.75366,6.0372824"
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  <svg:path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 198.97459,500 C 189.46727,314.6073 120.19966,398.13588 180.63904,13.76859"
+     id="path980"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="cc" />
+  <svg:path
+     sodipodi:nodetypes="cc"
+     inkscape:connector-curvature="0"
+     id="path982"
+     d="M 213.91466,498.64181 C 117.27124,350.25958 170.01581,358.50835 190.82545,14.447684"
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  <svg:path
+     sodipodi:nodetypes="cc"
+     inkscape:connector-curvature="0"
+     id="path984"
+     d="M 190.82546,499.32091 C 235.70897,342.67844 142.72184,435.90171 196.9373,13.089496"
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+</svg:svg>
