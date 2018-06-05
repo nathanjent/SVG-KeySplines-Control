@@ -3,125 +3,68 @@
     <head>
         <meta charset="UTF-8"/>
         <title>Fire Skull</title>
-        <link href="./easing_ctrl.css" rel="stylesheet"/>
+        <link href="./index.css" rel="stylesheet"/>
+        <style>
+body {
+    background: #222;
+    background: linear-gradient(to bottom, #111, #222);
+} 
+        </style>
     </head>
     <body>
         <div class="container">
-            <svg id="fire" xmlns="http://www.w3.org/2000/svg" width="400" height="500" preserveAspectRatio viewBox="0 0 400 500">
+            <svg id="fire" xmlns="http://www.w3.org/2000/svg" width="400" height="500" preserveAspectRatio="xMaxYMax" viewBox="0 0 400 500">
+
+                <!-- hide the reusable paths in a def -->
                 <defs >
-
-                <path 
-                    d="M 195,500 C 317,366 145,329 195,4"
-                    class="animPath" id="flamePath1"></path>
-                <path
-                    d="M 186,499 C 57,278 212,89 204,5"
-                    class="animPath" id="flamePath2"></path>
-                <path
-                    d="M 177,500 C 281,285 127,389 188,5"
-                    class="animPath" id="flamePath3"></path>
-                <path
-                    d="M 208,500 C 7,453 206,165 199,6"
-                    class="animPath" id="flamePath4"></path>
-                <path
-                    d="M 198,500 C 189,314 120,398 180,13"
-                    class="animPath" id="flamePath5"></path>
-                <path
-                    d="M 213,498 C 117,350 170,358 190,14"
-                    class="animPath" id="flamePath6"></path>
-                <path
-                    d="M 190,499 C 235,342 142,435 196,13"
-                    class="animPath" id="flamePath7"></path>
-
-                <path
-                    d="m -2,3 c 11,1 22,-5 42,-17 -23,2 -24,-4 -34,-7 -10,-2 -19,-4 -30,7 5,7 10,17 22,18 z"
-                    class="flame" id="flame01"></path>
-                <path
-                    d="M 3,1 C 16,-0 17,-11 39,-14 23,-26 5,-27 -2,-25 c -8,2 -8,9 -22,16 6,8 14,12 28,10 z"
-                    class="flame" id="flame02"></path>
                 </defs>
+                <path id="flameMPath0" d="M 195,500 C 317,366 145,329 195,4" class="animPath" ></path>
+                <path id="flameMPath1" d="M 186,499 C 57,278 212,89 204,5" class="animPath"></path>
+                <path id="flameMPath2" d="M 177,500 C 281,285 127,389 188,5" class="animPath"></path>
+                <path id="flameMPath3" d="M 208,500 C 7,453 206,165 199,6" class="animPath"></path>
+                <path id="flameMPath4" d="M 198,500 C 189,314 120,398 180,13" class="animPath"></path>
+                <path id="flameMPath5" d="M 213,498 C 117,350 170,358 190,14" class="animPath"></path>
+                <path id="flameMPath6" d="M 190,499 C 235,342 142,435 196,13" class="animPath"></path>
 
-                <use href="#flame01" fill= "#FF6600">
-                <animateTransform
-                    attributeName="transform"
-                    attributeType="XML"
-                    type="scale"
-                    from="2"
-                    to=".01"
-                    dur="3s"
-                    additive="sum"
-                    repeatCount="indefinite"/>
+                <path id="flameShape0" d="M 61,0 C 17,-24 19,-0 0,0 22,25 39,-2 61,0 Z" class="flame"></path>
+                <path id="flameShape1" d="M 61,0 C 33,-2 30,-22 0,0 13,3 15,22 61,0 Z" class="flame"></path>
+
                 <!-- Each segment in the motion path needs a corresponding timeframe and keySpline. -->
-                <animateMotion
-                    id="flameAnim1"
-                    dur="3s"
-                    calcMode="spline"
-                    keyTimes="0;1"
-                    keySplines=".8 0 .95 .6;"
-                    repeatCount="indefinite"
-                    additive="sum"
-                    rotate="auto">
-                <mpath href="#flamePath1"/>
+
+                <use id="flame0" href="#flameShape1">
+                <animate id="flameColor0" attributeName="fill" attributeType="XML" from="#FF6600" to="#FFdd22" dur="3s" begin="0.3s" repeatCount="indefinite"/>
+                <animateTransform id="flameScale0" attributeName="transform" attributeType="XML" type="scale" from="2" to=".01" dur="3s" begin="0s" additive="sum" repeatCount="indefinite"/>
+                <animateMotion id="flameMotion0" dur="3s" begin="0s" calcMode="spline" keyTimes="0;1" keySplines=".8 0 .95 .6;" repeatCount="indefinite" additive="sum" rotate="auto">
+                <mpath href="#flameMPath1"/>
                 </animateMotion>
                 </use>
 
-                <use href="#flame02" fill= "#FF6730">
-                <animateTransform
-                    attributeName="transform"
-                    attributeType="XML"
-                    type="scale"
-                    from="2"
-                    to=".01"
-                    dur="3s"
-                    begin="1s"
-                    additive="sum"
-                    repeatCount="indefinite"/>
-                <!-- Each segment in the motion path needs a corresponding timeframe and keySpline. -->
-                <animateMotion
-                    id="flameAnim2"
-                    dur="3s"
-                    begin="1s"
-                    calcMode="spline"
-                    keyTimes="0;1"
-                    keySplines=".8 0 .95 .6;"
-                    repeatCount="indefinite"
-                    additive="sum"
-                    rotate="auto">
-                <mpath href="#flamePath2"/>
+                <use id="flame1" href="#flameShape1" transform="rotate(-12)">
+                <animate id="flameColor1" attributeName="fill" attributeType="XML" from="#FF6600" to="#FFdd22" dur="3s" begin="0.3s" repeatCount="indefinite"/>
+                <animateTransform id="flameScale1" attributeName="transform" attributeType="XML" type="scale" from="2" to=".01" dur="3s" begin="0s" additive="sum" repeatCount="indefinite"/>
+                <animateMotion id="flameMotion1" dur="3s" begin="0s" calcMode="spline" keyTimes="0;1" keySplines=".8 0 .95 .6;" repeatCount="indefinite" additive="sum" rotate="auto">
+                <mpath href="#flameMPath4"/>
                 </animateMotion>
                 </use>
 
-                <use href="#flame01" fill= "#FF6729">
-                <animateTransform
-                    attributeName="transform"
-                    attributeType="XML"
-                    type="scale"
-                    from="2"
-                    to=".01"
-                    dur="3s"
-                    begin="1s"
-                    additive="sum"
-                    repeatCount="indefinite"/>
-                <!-- Each segment in the motion path needs a corresponding timeframe and keySpline. -->
-                <animateMotion
-                    id="flameAnim3"
-                    dur="3s"
-                    begin="1.4s"
-                    calcMode="spline"
-                    keyTimes="0;1"
-                    keySplines=".8 0 .95 .6;"
-                    repeatCount="indefinite"
-                    additive="sum"
-                    rotate="auto">
-                <mpath href="#flamePath3"/>
+                <use id="flame2" href="#flameShape0">
+                <animate id="flameColor2"  attributeName="fill" attributeType="XML" from="#FF6600" to="#FFdd22" dur="3s" begin="0.3s" repeatCount="indefinite"/>
+                <animateTransform id="flameScale2"  attributeName="transform" attributeType="XML" type="scale" from="2" to=".01" dur="3s" begin="0.3s" additive="sum" repeatCount="indefinite"/>
+                <animateMotion id="flameMotion2" dur="3s" begin="0.3s" calcMode="spline" keyTimes="0;1" keySplines=".8 0 .95 .6;" repeatCount="indefinite" additive="sum" rotate="auto">
+                <mpath href="#flameMPath2"/>
+                </animateMotion>
+                </use>
+
+                <use id="flame3" href="#flameShape1">
+                <animate id="flameColor3" attributeName="fill" attributeType="XML" from="#FF6600" to="#FFdd22" dur="3s" begin="0.3s" repeatCount="indefinite"/>
+                <animateTransform id="flameScale3"  attributeName="transform" attributeType="XML" type="scale" from="2" to=".01" dur="3s" begin="0.5s" additive="sum" repeatCount="indefinite"/>
+                <animateMotion id="flameMotion3" dur="3s" begin="0.5s" calcMode="spline" keyTimes="0;1" keySplines=".8 0 .95 .6;" repeatCount="indefinite" additive="sum" rotate="auto">
+                <mpath href="#flameMPath3"/>
                 </animateMotion>
                 </use>
 
             </svg>
         </div>
-        <script src="./easing_ctrl.js"></script>
-        <script>
-            let fireCtrl = new CreateAnimCtrl('#fire', '#flameUpLeft', 10, 100);
-            fireCtrl.start();
-        </script>
+        <script src="./index.js" type="module"></script>
     </body>
 </html>

@@ -12,7 +12,7 @@
    preserveAspectRatio="true"
    viewBox="0 0 400 500"
    version="1.1"
-   sodipodi:docname="fire.svg"
+   sodipodi:docname="asset_construction.svg"
    inkscape:version="0.92.2 2405546, 2018-03-11">
   <svg:metadata
      id="metadata932">
@@ -22,7 +22,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </svg:metadata>
@@ -39,9 +39,9 @@
      inkscape:window-height="1028"
      id="namedview930"
      showgrid="false"
-     inkscape:zoom="1.4725499"
-     inkscape:cx="76.688918"
-     inkscape:cy="265.75443"
+     inkscape:zoom="8.3300001"
+     inkscape:cx="18.763619"
+     inkscape:cy="488.77533"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
@@ -153,10 +153,11 @@
   </svg:use>
   <svg:path
      class="flame"
-     d="m 7.0745649,7.9505548 c 13.0000001,-1 14.0000001,-12 36.0000001,-15 -16,-11.9999998 -34.0000001,-12.9999998 -41.0000001,-10.9999998 -8,2 -8,8.9999998 -21.9999999,15.9999998 6,8 13.9999999,12 27.9999999,10 z"
-     id="path927"
+     d="M 61.569027,0.04561717 C 17.447313,-24.573862 19.031912,-0.58832389 0.00960335,0.12364958 22.117589,25.666626 39.03344,-2.9478068 61.569027,0.04561717 Z"
+     id="flame00"
      inkscape:connector-curvature="0"
-     style="fill:#ff6600">
+     style="fill:#ff6600"
+     sodipodi:nodetypes="ccc">
     <svg:animateTransform
        attributeName="transform"
        attributeType="XML"
@@ -174,6 +175,34 @@
        repeatCount="indefinite"
        additive="sum"
        rotate="auto">
+      <svg:mpath
+         href="#rightPath2" />
+    </svg:animateMotion>
+  </svg:path>
+  <svg:path
+     sodipodi:nodetypes="ccc"
+     style="fill:#ffdd22;fill-opacity:1"
+     inkscape:connector-curvature="0"
+     id="flame01"
+     d="M 61.809123,0.16566519 C 33.023295,-2.035095 30.283121,-22.950559 0.00960335,0.12364958 13.448456,3.5433281 15.989399,22.52513 61.809123,0.16566519 Z"
+     class="flame">
+    <svg:animateTransform
+       repeatCount="indefinite"
+       additive="sum"
+       dur="3s"
+       to=".01"
+       from="2"
+       type="scale"
+       attributeType="XML"
+       attributeName="transform" />
+    <svg:animateMotion
+       rotate="auto"
+       additive="sum"
+       repeatCount="indefinite"
+       keySplines="0 .75 .25 .25;.25 .25 .6 1"
+       keyTimes="0;.6;1"
+       calcMode="spline"
+       dur="3s">
       <svg:mpath
          href="#rightPath2" />
     </svg:animateMotion>

@@ -1,7 +1,7 @@
 const SVGNS = "http://www.w3.org/2000/svg";
 
 // Create a control on the given SVG element for the given animate element.
-function CreateAnimCtrl(svgSel, animSel, x, y) {
+export function AnimCtrl(svgSel, animSel, x, y) {
     const svgElem = document.querySelector(svgSel);
     const animElem = svgElem.querySelector(animSel);
     const width = 100;

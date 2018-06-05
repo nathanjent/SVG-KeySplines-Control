@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <title>SVG Animation Easing Control</title>
-    <link href="./easing_ctrl.css" rel="stylesheet"/>
+    <link href="./index.css" rel="stylesheet"/>
 </head>
 <body>
     <svg id="mySVG" xmlns="http://www.w3.org/2000/svg" width="512" height="512">
@@ -24,10 +24,6 @@
                 />
         </circle>
     </svg>
-    <script src="./easing_ctrl.js"></script>
-    <script>
-        let slideCtrl = new CreateAnimCtrl('#mySVG', '#slideRight', 10, 100);
-        slideCtrl.start();
-    </script>
+    <script src="./index.js" type="module"></script>
 </body>
 </html>
