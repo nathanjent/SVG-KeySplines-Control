@@ -1,0 +1,29 @@
+{
+    "presets": [
+        [
+            "env",
+            {
+                "modules": false,
+                "targets": {
+                    "browsers": [
+                        "> 5%",
+                        "ie >= 11"
+                    ]
+                }
+            }
+        ]
+    ],
+    "plugins": [
+        "external-helpers"
+    ],
+    "env": {
+        "development": {
+            "minified": true,
+            "sourceMaps": true
+        },
+        "production": {
+            "minified": true,
+            "sourceMaps": true
+        }
+    }
+}

@@ -42,6 +42,14 @@ export function AnimCtrl(svgSel, animSel, x, y) {
         line1.setAttribute('stroke-width', 2);
         svgElem.appendChild(line1);
 
+        const line2 = document.createElementNS(SVGNS, 'line');
+        line2.setAttribute('id', `handleB${i}`);
+        line2.setAttribute('stroke', '#C33');
+        line2.setAttribute('stroke-width', 2);
+        svgElem.appendChild(line2);
+    }
+
+    for (let i = 0; i < keySplines.length; i++) {
         const p1 = document.createElementNS(SVGNS, 'circle');
         p1.setAttribute('id', `controlPointA${i}`);
         p1.setAttribute('class', 'draggable');
@@ -49,12 +57,6 @@ export function AnimCtrl(svgSel, animSel, x, y) {
         p1.setAttribute('fill', '#C33');
         p1.addEventListener('mousedown', onSelectElement);
         svgElem.appendChild(p1);
-
-        const line2 = document.createElementNS(SVGNS, 'line');
-        line2.setAttribute('id', `handleB${i}`);
-        line2.setAttribute('stroke', '#C33');
-        line2.setAttribute('stroke-width', 2);
-        svgElem.appendChild(line2);
 
         const p2 = document.createElementNS(SVGNS, 'circle');
         p2.setAttribute('id', `controlPointB${i}`);
