@@ -20,10 +20,13 @@
         "rollup-plugin-node-resolve": "^3.3.0"
     },
     "scripts": {
-        "build": "run-p build:*",
-        "build:js": "rollup -c -m",
+        "build": "run-s build:*",
+        "build:js": "rollup --config --sourcemap",
         "build:css": "postcss src/**/*.css --output dist/index.css",
         "build:html": "cp -u src/*.html dist/",
-        "clean": "rm -r ./dist"
+        "clean": "rm -r dist/",
+        "watch": "run-p watch:*",
+        "watch:js": "rollup --config --sourcemap --watch",
+        "watch:css": "postcss src/**/*.css --output dist/index.css --watch"
     }
 }
