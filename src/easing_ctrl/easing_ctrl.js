@@ -118,65 +118,69 @@ export function AnimCtrl(svgSel, animSel, x, y) {
     };
 
     function onSelectElement(evt) {
-        evt.preventDefault();
         selectedElement = evt.currentTarget;
+        // Disable dragging
+        selectedElement.ondragstart = function() {
+            return false;
+        };
         selectedElement.setAttribute('r', 15);
-        selectedElement.addEventListener('mousemove', onMoveElement);
-        selectedElement.addEventListener('mouseout', onDeselectElement);
+        appendMovement(evt.movementX, evt.movementY);
+        document.addEventListener('mousemove', onMoveElement);
         selectedElement.addEventListener('mouseup', onDeselectElement);
-    }
 
-    function onMoveElement(evt) {
-        evt.preventDefault();
-        // Append to the elements transform list
-        const tfm = svgElem.createSVGTransform();
-        tfm.setTranslate(evt.movementX, evt.movementY);
-        selectedElement.transform.baseVal.appendItem(tfm);
-    }
-
-    function onDeselectElement(evt) {
-        evt.preventDefault();
-
-        // Consolidate the transform list
-        selectedElement.transform.baseVal.consolidate();
-
-        // Get key splines
-        let keySplines = animElem.getAttribute('keySplines')
-            .split(';')
-            .filter(s => s)
-            .map(s => s.split(' ').map(s => +s));
-
-        // Update key splines for moved control point
-        let keySplineStr = '';
-        for (let i = 0; i < keySplines.length; i++) {
-            let controlPointA = document.querySelector(`#controlPointA${i}`);
-            let controlPointB = document.querySelector(`#controlPointB${i}`);
-            let keySpline = keySplines[i];
-
-            let ax = (evt.clientX - x - (width * i)) / width;
-            let ay = (evt.clientY - y) / height;
-
-            if (selectedElement === controlPointA) {
-                keySpline[0] = ax > 1 ? 1 : ax < 0 ? 0 : ax;
-                keySpline[1] = ay > 1 ? 1 : ay < 0 ? 0 : ay;
-            }
-            if (selectedElement === controlPointB) {
-                keySpline[2] = ax > 1 ? 1 : ax < 0 ? 0 : ax;
-                keySpline[3] = ay > 1 ? 1 : ay < 0 ? 0 : ay;
-            }
-            keySplineStr += `${keySpline[0]} ${keySpline[1]} ${keySpline[2]} ${keySpline[3]};`;
+        function onMoveElement(evt) {
+            appendMovement(evt.movementX, evt.movementY);
         }
-        animElem.setAttribute('keySplines', keySplineStr);
 
-        selectedElement.setAttribute('r', 5);
+        // Append to the selected elements transform list
+        function appendMovement(dx, dy) {
+            const tfm = svgElem.createSVGTransform();
+            tfm.setTranslate(dx, dy);
+            selectedElement.transform.baseVal.appendItem(tfm);
+        }
 
-        // Clear selected
-        selectedElement.transform.baseVal.clear();
-        selectedElement.removeEventListener('mousemove', onMoveElement);
-        selectedElement.removeEventListener('mouseout', onDeselectElement);
-        selectedElement.removeEventListener('mouseup', onDeselectElement);
-        selectedElement = 0;
+        function onDeselectElement(evt) {
+            // Consolidate the transform list
+            selectedElement.transform.baseVal.consolidate();
+
+            // Get key splines
+            let keySplines = animElem.getAttribute('keySplines')
+                .split(';')
+                .filter(s => s)
+                .map(s => s.split(' ').map(s => +s));
+
+            // Update key splines for moved control point
+            let keySplineStr = '';
+            for (let i = 0; i < keySplines.length; i++) {
+                let controlPointA = document.querySelector(`#controlPointA${i}`);
+                let controlPointB = document.querySelector(`#controlPointB${i}`);
+                let keySpline = keySplines[i];
+
+                let ax = (evt.clientX - x - (width * i)) / width;
+                let ay = (evt.clientY - y) / height;
+
+                if (selectedElement === controlPointA) {
+                    keySpline[0] = ax > 1 ? 1 : ax < 0 ? 0 : ax;
+                    keySpline[1] = ay > 1 ? 1 : ay < 0 ? 0 : ay;
+                }
+                if (selectedElement === controlPointB) {
+                    keySpline[2] = ax > 1 ? 1 : ax < 0 ? 0 : ax;
+                    keySpline[3] = ay > 1 ? 1 : ay < 0 ? 0 : ay;
+                }
+                keySplineStr += `${keySpline[0]} ${keySpline[1]} ${keySpline[2]} ${keySpline[3]};`;
+            }
+            animElem.setAttribute('keySplines', keySplineStr);
+
+            selectedElement.setAttribute('r', 5);
+
+            // Clear selected
+            selectedElement.transform.baseVal.clear();
+            document.removeEventListener('mousemove', onMoveElement);
+            selectedElement.removeEventListener('mouseup', onDeselectElement);
+            selectedElement = 0;
+        }
     }
+
 
     let me = this;
     this.start = function() {
