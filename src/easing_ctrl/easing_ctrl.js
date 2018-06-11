@@ -8,7 +8,6 @@ export function AnimCtrl(svgSel, animSel, x, y) {
     const height = 100;
 
     let keySplines = getKeySplines(animElem);
-    let selectedElement = 0;
 
     for (let i = 0; i < keySplines.length; i++) {
         const boxElem = document.createElementNS(SVGNS, 'rect');
@@ -75,10 +74,10 @@ export function AnimCtrl(svgSel, animSel, x, y) {
                 let k = s.split(' ')
                     .map(s => +s);
                 return {
-                    "x1": k[0],
-                    "y1": k[1],
-                    "x2": k[2],
-                    "y2": k[3],
+                    x1: k[0],
+                    y1: k[1],
+                    x2: k[2],
+                    y2: k[3],
                 };
             });
     }
@@ -118,7 +117,7 @@ export function AnimCtrl(svgSel, animSel, x, y) {
     };
 
     function onSelectElement(evt) {
-        selectedElement = evt.currentTarget;
+        let selectedElement = evt.currentTarget;
         // Disable dragging
         selectedElement.ondragstart = function() {
             return false;
@@ -144,10 +143,7 @@ export function AnimCtrl(svgSel, animSel, x, y) {
             selectedElement.transform.baseVal.consolidate();
 
             // Get key splines
-            let keySplines = animElem.getAttribute('keySplines')
-                .split(';')
-                .filter(s => s)
-                .map(s => s.split(' ').map(s => +s));
+            let keySplines = getKeySplines(animElem);
 
             // Update key splines for moved control point
             let keySplineStr = '';
@@ -160,14 +156,14 @@ export function AnimCtrl(svgSel, animSel, x, y) {
                 let ay = (evt.clientY - y) / height;
 
                 if (selectedElement === controlPointA) {
-                    keySpline[0] = ax > 1 ? 1 : ax < 0 ? 0 : ax;
-                    keySpline[1] = ay > 1 ? 1 : ay < 0 ? 0 : ay;
+                    keySpline.x1 > 1 ? 1 : ax < 0 ? 0 : ax;
+                    keySpline.y1 = ay > 1 ? 1 : ay < 0 ? 0 : ay;
                 }
                 if (selectedElement === controlPointB) {
-                    keySpline[2] = ax > 1 ? 1 : ax < 0 ? 0 : ax;
-                    keySpline[3] = ay > 1 ? 1 : ay < 0 ? 0 : ay;
+                    keySpline.x2 = ax > 1 ? 1 : ax < 0 ? 0 : ax;
+                    keySpline.y2 = ay > 1 ? 1 : ay < 0 ? 0 : ay;
                 }
-                keySplineStr += `${keySpline[0]} ${keySpline[1]} ${keySpline[2]} ${keySpline[3]};`;
+                keySplineStr += `${keySpline.x1} ${keySpline.y1} ${keySpline.x2} ${keySpline.y2};`;
             }
             animElem.setAttribute('keySplines', keySplineStr);
 
@@ -177,7 +173,6 @@ export function AnimCtrl(svgSel, animSel, x, y) {
             selectedElement.transform.baseVal.clear();
             document.removeEventListener('mousemove', onMoveElement);
             selectedElement.removeEventListener('mouseup', onDeselectElement);
-            selectedElement = 0;
         }
     }
 
