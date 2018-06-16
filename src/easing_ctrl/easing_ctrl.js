@@ -82,7 +82,7 @@ export function AnimCtrl(svgSel, animSel, x, y) {
             });
     }
 
-    this.update = function() {
+    function update() {
         keySplines = getKeySplines(animElem);
 
         for (let i = 0; i < keySplines.length; i++) {
@@ -96,23 +96,23 @@ export function AnimCtrl(svgSel, animSel, x, y) {
 
             let pathStr = `
                 M ${x + (width * i)},${height + y}
-                C ${x + (width * ks.x1) + (width * i)},${y + (height * ks.y1)}
-                    ${x + (width * ks.x2) + (width * i)},${y + (height * ks.y2)}
+                C ${x + (width * ks.x1) + (width * i)},${y + height - height * ks.y1}
+                    ${x + (width * ks.x2) + (width * i)},${y + height - height * ks.y2}
                     ${x + width + (width * i)},${y}`;
             easingCurve.setAttribute('d', pathStr);
-            text.textContent = `${ks.x1} ${ks.y1} ${ks.x2} ${ks.y2};`;
+            text.textContent = `${ks.x1.toFixed(2)} ${ks.y1.toFixed(2)} ${ks.x2.toFixed(2)} ${ks.y2.toFixed(2)};`;
             p1.setAttribute('cx', x + (width * ks.x1) + (width * i));
-            p1.setAttribute('cy', y + (height * ks.y1));
+            p1.setAttribute('cy', y + height - height * ks.y1);
             line1.setAttribute('x1', x + (width * i));
             line1.setAttribute('y1', height + y);
             line1.setAttribute('x2', x + (width * ks.x1) + (width * i));
-            line1.setAttribute('y2', y + (height * ks.y1));
+            line1.setAttribute('y2', y + height - height * ks.y1);
             p2.setAttribute('cx', x + (width * ks.x2) + (width * i));
-            p2.setAttribute('cy', y + (height * ks.y2));
+            p2.setAttribute('cy', y + height - height * ks.y2);
             line2.setAttribute('x1', x + width + (width * i));
             line2.setAttribute('y1', y);
             line2.setAttribute('x2', x + (width * ks.x2) + (width * i));
-            line2.setAttribute('y2', y + (height * ks.y2));
+            line2.setAttribute('y2', y + height - height * ks.y2);
         }
     };
 
@@ -122,7 +122,7 @@ export function AnimCtrl(svgSel, animSel, x, y) {
         selectedElement.ondragstart = function() {
             return false;
         };
-        selectedElement.setAttribute('r', 15);
+        selectedElement.setAttribute('r', 7);
         appendMovement(evt.movementX, evt.movementY);
         document.addEventListener('mousemove', onMoveElement);
         selectedElement.addEventListener('mouseup', onDeselectElement);
@@ -155,13 +155,14 @@ export function AnimCtrl(svgSel, animSel, x, y) {
                 let ax = (evt.clientX - x - (width * i)) / width;
                 let ay = (evt.clientY - y) / height;
 
+                // Y values on the keySpline graph are flipped compared to SVG coordinates
                 if (selectedElement === controlPointA) {
-                    keySpline.x1 > 1 ? 1 : ax < 0 ? 0 : ax;
-                    keySpline.y1 = ay > 1 ? 1 : ay < 0 ? 0 : ay;
+                    keySpline.x1 = ax > 1 ? 1 : ax < 0 ? 0 : ax;
+                    keySpline.y1 = 1 - (ay > 1 ? 1 : ay < 0 ? 0 : ay);
                 }
                 if (selectedElement === controlPointB) {
                     keySpline.x2 = ax > 1 ? 1 : ax < 0 ? 0 : ax;
-                    keySpline.y2 = ay > 1 ? 1 : ay < 0 ? 0 : ay;
+                    keySpline.y2 = 1 - (ay > 1 ? 1 : ay < 0 ? 0 : ay);
                 }
                 keySplineStr += `${keySpline.x1} ${keySpline.y1} ${keySpline.x2} ${keySpline.y2};`;
             }
@@ -173,12 +174,11 @@ export function AnimCtrl(svgSel, animSel, x, y) {
             selectedElement.transform.baseVal.clear();
             document.removeEventListener('mousemove', onMoveElement);
             selectedElement.removeEventListener('mouseup', onDeselectElement);
+            update();
         }
     }
 
-
-    let me = this;
     this.start = function() {
-        setInterval(() => me.update(), 10);
+        update();
     }
 }

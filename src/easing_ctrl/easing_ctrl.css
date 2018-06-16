@@ -2,7 +2,11 @@
   cursor: move;
 }
 
+.pathText {
+    fill: pink;
+}
+
 .animPath {
-    stroke: #000;
+    stroke: pink;
     fill: none;
 }
